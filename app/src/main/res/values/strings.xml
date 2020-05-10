@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Music style</string>
+    <string name="all_music_from_cymantics_soundbanks_and_sample_packs_cymatics_fm">ALl music from cymantics soundbanks and sample packs cymatics.fm</string>
+
+    <string-array name="musicNames">
+        <item>classic melody min bass</item>
+        <item>classic melody min brass</item>
+        <item>classic melody min brass</item>
+    </string-array>
 </resources>

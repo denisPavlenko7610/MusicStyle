@@ -24,8 +24,8 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,8 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,8 +50,8 @@
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,8 +63,8 @@
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,8 +76,8 @@
 
     <ImageButton
         android:id="@+id/imageButton5"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +89,8 @@
 
     <ImageButton
         android:id="@+id/imageButton6"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,8 +102,8 @@
 
     <ImageButton
         android:id="@+id/imageButton7"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,8 +115,8 @@
 
     <ImageButton
         android:id="@+id/imageButton8"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,8 +128,8 @@
 
     <ImageButton
         android:id="@+id/imageButton10"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,21 +141,21 @@
 
     <ImageButton
         android:id="@+id/imageButton11"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313"
+        app:layout_constraintVertical_bias="0.312"
         app:srcCompat="@drawable/ic_square_blue" />
 
     <ImageButton
         android:id="@+id/imageButton9"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,59 +167,74 @@
 
     <ImageButton
         android:id="@+id/imageButton12"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:background="#333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313"
+        app:layout_constraintVertical_bias="0.312"
         app:srcCompat="@drawable/ic_square_pink" />
 
     <ImageButton
-        android:id="@+id/imageButton14"
+        android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="#333"
-        app:layout_constraintStart_toEndOf="@+id/imageButton16"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_play_circle" />
+        app:srcCompat="@drawable/ic_play_circle"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="80dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="314dp"
         android:layout_height="41dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="#fff"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="128dp" />
 
     <ImageButton
         android:id="@+id/imageButton15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="#333"
-        app:layout_constraintStart_toEndOf="@+id/imageButton14"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_skip_next" />
+        app:srcCompat="@drawable/ic_skip_next"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="80dp" />
 
     <ImageButton
         android:id="@+id/imageButton16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
         android:background="#333"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton14"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_skip_previous" />
+        app:srcCompat="@drawable/ic_skip_previous"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <TextView
+        android:textColor="#111"
+        android:textSize="20sp"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Music Style dev"
+        android:fontFamily="cursive"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="22dp" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
