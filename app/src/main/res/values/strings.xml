@@ -1,10 +1,81 @@
 <resources>
     <string name="app_name">Music style</string>
     <string name="all_music_from_cymantics_soundbanks_and_sample_packs_cymatics_fm">ALl music from cymantics soundbanks and sample packs cymatics.fm</string>
+    <string name="banner_ad_unit_id">ca-app-pub-7173647303121367/3265845172</string>
 
     <string-array name="musicNames">
         <item>classic melody min bass</item>
         <item>classic melody min brass</item>
-        <item>classic melody min brass</item>
+        <item>cobra melody 1</item>
+        <item>cobra melody 2</item>
+        <item>dark melody 1</item>
+        <item>dark melody ball 2</item>
+        <item>dark melody bpm</item>
+        <item>eternity acoustic guitar 1</item>
+        <item>eternity acoustic guitar 2</item>
+        <item>eternity acoustic guitar 3</item>
+        <item>eternity acoustic guitar 4</item>
+        <item>eternity acoustic guitar 5</item>
+        <item>eternity electric guitar 1</item>
+        <item>eternity electric guitar 2</item>
+        <item>eternity electric guitar 4</item>
+        <item>eternity electric guitar 3</item>
+        <item>eternity electric guitar 5</item>
+        <item>eternity electric guitar 6</item>
+        <item>nostalgic melody 1</item>
+        <item>nostalgic melody 2</item>
+        <item>nostalgic melody 3</item>
+        <item>nostalgic melody 4</item>
+        <item>nostalgic melody piano 2</item>
+        <item>odyssey breakdown 1</item>
+        <item>odyssey breakdown 2</item>
+        <item>odyssey breakdown 3</item>
+        <item>odyssey breakdown 4</item>
+        <item>odyssey breakdown 5</item>
+        <item>odyssey breakdown 6</item>
+        <item>odyssey breakdown 7</item>
+        <item>odyssey breakdown 8</item>
+        <item>odyssey breakdown 9</item>
+        <item>odyssey breakdown 10</item>
+        <item>odyssey breakdown 11</item>
+        <item>odyssey future bass drop</item>
+        <item>odyssey house drop</item>
+        <item>odyssey various drop</item>
+        <item>oracle classic melody 1</item>
+        <item>oracle classic melody 2</item>
+        <item>oracle classic melody 3</item>
+        <item>oracle happy melody 1</item>
+        <item>oracle happy melody 2</item>
+        <item>oracle happy melody 3</item>
+        <item>oracle happy melody 4</item>
+        <item>oracle nostalgic melody 1</item>
+        <item>oracle nostalgic melody 2</item>
+        <item>oracle nostalgic melody 3</item>
+        <item>oracle nostalgic melody 4</item>
+        <item>oracle nostalgic melody 5</item>
+        <item>oracle nostalgic melody 6</item>
+        <item>oracle nostalgic melody 7</item>
+        <item>oracle nostalgic melody 8</item>
+        <item>oracle nostalgic melody 9</item>
+        <item>oracle nostalgic melody 10</item>
+        <item>oracle nostalgic melody 11</item>
+        <item>oracle various melody 1</item>
+        <item>oracle various melody 2</item>
+        <item>oracle various melody 3</item>
+        <item>oracle various melody 4</item>
+        <item>oracle west coast melody</item>
+        <item>roses breakdown 1</item>
+        <item>roses breakdown 2</item>
+        <item>roses breakdown 3</item>
+        <item>roses breakdown 4</item>
+        <item>roses breakdown 5</item>
+        <item>roses drop 1</item>
+        <item>roses drop 2</item>
+        <item>roses drop 3</item>
+        <item>roses drop 4</item>
+        <item>roses drop 5</item>
+        <item>various melody 1</item>
+        <item>various melody flute</item>
+        <item>various melody harp</item>
     </string-array>
 </resources>

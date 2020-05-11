@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy"/>
-        <activity android:name=".LicenseInfo"
-            android:screenOrientation="locked"></activity>
+            android:value="ca-app-pub-7173647303121367~6094068935"/>
+
+        <activity
+            android:name=".LicenseInfo"
+            android:screenOrientation="locked" />
+
         <activity android:name=".MainActivity"
             android:screenOrientation="locked">
             <intent-filter>
@@ -22,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

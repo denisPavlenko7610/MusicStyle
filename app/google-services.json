@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "241162795244",
+    "firebase_url": "https://music-style-app.firebaseio.com",
+    "project_id": "music-style-app",
+    "storage_bucket": "music-style-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241162795244:android:ee6209b61a2aae53ff4dc9",
+        "android_client_info": {
+          "package_name": "com.denis7610.musicstyle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241162795244-fi1ioe7jt727ckqaacr83ok3tqct0fcl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnXWzAPe21MekGawqsubO7ZINTdhufaoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241162795244-fi1ioe7jt727ckqaacr83ok3tqct0fcl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
