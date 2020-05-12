@@ -27,6 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private AdView adView;
     private ImageButton playButton;
+    private boolean isPlaying = false;
     private ImageButton nextButton;
     private ImageButton previewButton;
     private SoundPool soundPool;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     List<Integer> listOfMusic = new ArrayList<>();
     MediaPlayer mediaPlayer;
     float volumeInstruments = 0.7f;
+
+    private int musicIndex = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +50,6 @@ public class MainActivity extends AppCompatActivity {
         //adMob
         adMobCreate();
 
-        createMediaPlayer();
-    }
-
-    private void createMediaPlayer() {
-        mediaPlayer = MediaPlayer.create(this, listOfMusic.get(51));
-        mediaPlayer.setLooping(true);
-        mediaPlayer.seekTo(0);
-        mediaPlayer.setVolume(1f, 1f);
     }
 
     private void createSoundPool() {
@@ -74,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initComponents() {
         playButton = findViewById(R.id.playButton);
-
         //add all music
         for (Field field : R.raw.class.getFields()) {
             try {
@@ -83,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        mediaPlayer = MediaPlayer.create(this,listOfMusic.get(musicIndex));
     }
 
     private void adMobCreate() {
@@ -156,12 +152,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playButtonClick(View view) {
-        if (!mediaPlayer.isPlaying()) {
+        createMediaPlayer();
+    }
+
+    private void createMediaPlayer() {
+        if (!isPlaying) {
+            isPlaying = true;
+            mediaPlayer = MediaPlayer.create(this, listOfMusic.get(musicIndex));
+            mediaPlayer.setLooping(true);
+            mediaPlayer.setVolume(1f, 1f);
             mediaPlayer.start();
-            playButton.setBackgroundResource(R.drawable.ic_stop_black_24dp);
+            playButton.setImageResource(R.drawable.ic_stop_black_24dp);
         } else {
+            isPlaying = false;
             mediaPlayer.stop();
-            playButton.setBackgroundResource(R.drawable.ic_play_circle);
+            playButton.setImageResource(R.drawable.ic_play_circle);
+        }
+    }
+
+    public void nextMusic(View view) {
+        if (musicIndex < listOfMusic.size()) {
+            musicIndex++;
+            isPlaying = false;
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                createMediaPlayer();
+            }
+        } else {
+            musicIndex = 12;
+            isPlaying = false;
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                createMediaPlayer();
+            }
+        }
+    }
+
+    public void previewMusic(View view) {
+        if (musicIndex > 12) {
+            musicIndex--;
+            isPlaying = false;
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                createMediaPlayer();
+            }
+        } else {
+            musicIndex = 12;
         }
     }
 }

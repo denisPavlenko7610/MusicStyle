@@ -169,15 +169,15 @@
 
     <ImageButton
         android:id="@+id/playButton"
-        android:onClick="playButtonClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:background="#333"
+        android:onClick="playButtonClick"
+        android:src="@drawable/ic_play_circle"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toEndOf="@+id/imageButton16"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_play_circle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -195,6 +195,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#333"
+        android:onClick="nextMusic"
         ads:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toEndOf="@+id/playButton"
@@ -207,6 +208,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="52dp"
         android:background="#333"
+        android:onClick="previewMusic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_skip_previous" />
