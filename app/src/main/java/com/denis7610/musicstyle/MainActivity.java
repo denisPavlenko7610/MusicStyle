@@ -2,6 +2,7 @@ package com.denis7610.musicstyle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
@@ -12,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -22,6 +24,7 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     List<Integer> listOfMusic = new ArrayList<>();
     MediaPlayer mediaPlayer;
     float volumeInstruments = 0.7f;
+    private List<String> musicText;
+    private TextView playerTextMusic;
 
     private int musicIndex = 12;
 
@@ -69,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initComponents() {
         playButton = findViewById(R.id.playButton);
+        musicText = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.musicNames)));
+        playerTextMusic = findViewById(R.id.textView2);
+
+        changePlayerText();
+
         //add all music
         for (Field field : R.raw.class.getFields()) {
             try {
@@ -78,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        mediaPlayer = MediaPlayer.create(this,listOfMusic.get(musicIndex));
+        mediaPlayer = MediaPlayer.create(this, listOfMusic.get(musicIndex));
+    }
+
+    private void changePlayerText() {
+        playerTextMusic.setText("#" + (musicIndex - 11) + " " + musicText.get(musicIndex - 12));
     }
 
     private void adMobCreate() {
@@ -163,28 +177,35 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.setVolume(1f, 1f);
             mediaPlayer.start();
             playButton.setImageResource(R.drawable.ic_stop_black_24dp);
+            changePlayerText();
         } else {
             isPlaying = false;
             mediaPlayer.stop();
+            mediaPlayer.release();
             playButton.setImageResource(R.drawable.ic_play_circle);
+            changePlayerText();
         }
     }
 
     public void nextMusic(View view) {
-        if (musicIndex < listOfMusic.size()) {
+        if (musicIndex < listOfMusic.size()-1) {
             musicIndex++;
             isPlaying = false;
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.stop();
+                mediaPlayer.release();
                 createMediaPlayer();
             }
+            changePlayerText();
         } else {
             musicIndex = 12;
             isPlaying = false;
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.stop();
+                mediaPlayer.release();
                 createMediaPlayer();
             }
+            changePlayerText();
         }
     }
 
@@ -194,10 +215,15 @@ public class MainActivity extends AppCompatActivity {
             isPlaying = false;
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.stop();
+                mediaPlayer.release();
                 createMediaPlayer();
             }
+            changePlayerText();
         } else {
             musicIndex = 12;
+            changePlayerText();
         }
     }
+
+
 }
