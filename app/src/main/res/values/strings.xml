@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Music style</string>
-    <string name="all_music_from_cymantics_soundbanks_and_sample_packs_cymatics_fm">ALl music from cymantics soundbanks and sample packs cymatics.fm</string>
+    <string name="all_music_from_cymantics_soundbanks_and_sample_packs_cymatics_fm" translatable="false">ALl music from cymantics soundbanks and sample packs cymatics.fm</string>
 <!--    <string name="banner_ad_unit_id">ca-app-pub-7173647303121367/3265845172</string>-->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-7173647303121367/3265845172</string>
 
     <string-array name="musicNames">
         <item>classic melody min bass</item>

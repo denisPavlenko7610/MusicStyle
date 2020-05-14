@@ -12,6 +12,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.ads.consent.ConsentForm;
+import com.google.ads.consent.ConsentFormListener;
+import com.google.ads.consent.ConsentInfoUpdateListener;
+import com.google.ads.consent.ConsentInformation;
+import com.google.ads.consent.ConsentStatus;
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -19,12 +25,15 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private AdView adView;
+    private ConsentForm form;
     private ImageButton playButton;
     private boolean isPlaying = false;
     private ImageButton nextButton;
@@ -48,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ESPolicy();
+
         initComponents();
 
         createSoundPool();
@@ -55,6 +66,82 @@ public class MainActivity extends AppCompatActivity {
         //adMob
         adMobCreate();
 
+    }
+
+    private void ESPolicy () {
+        ConsentInformation consentInformation = ConsentInformation.getInstance(getApplicationContext());
+        String[] publisherIds = {"pub-7173647303121367"};
+        consentInformation.requestConsentInfoUpdate(publisherIds, new ConsentInfoUpdateListener() {
+            @Override
+            public void onConsentInfoUpdated(ConsentStatus consentStatus) {
+                // User's consent status successfully updated.
+                boolean inEEA = ConsentInformation.getInstance(getApplicationContext()).isRequestLocationInEeaOrUnknown();
+
+                if (inEEA) {
+                    //noinspection StatementWithEmptyBody
+                    if (consentStatus == consentStatus.PERSONALIZED) {
+                        //no code
+                    } else if (consentStatus == consentStatus.NON_PERSONALIZED) {
+                        Bundle extras = new Bundle();
+                        extras.putString("npa", "1");
+
+                        AdRequest request = new AdRequest.Builder()
+                                .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                                .build();
+                    } else { //start code form
+
+                        URL privacyUrl = null;
+                        try {
+                            privacyUrl = new URL("https://drive.google.com/open?id=1j4PaSeUJWLX6Qkez1Akz4nrDISfDYuDu_mfyCQCyq6c");
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                            // Handle error.
+                        }
+                        form = new ConsentForm.Builder(MainActivity.this, privacyUrl)
+                                .withListener(new ConsentFormListener() {
+                                    @Override
+                                    public void onConsentFormLoaded() {
+                                        // Consent form loaded successfully.
+                                        form.show();
+                                    }
+
+                                    @Override
+                                    public void onConsentFormOpened() {
+                                        // Consent form was displayed.
+                                    }
+
+                                    @Override
+                                    public void onConsentFormClosed(
+                                            ConsentStatus consentStatus, Boolean userPrefersAdFree) {
+                                        // Consent form was closed.
+                                        if (consentStatus == ConsentStatus.NON_PERSONALIZED) {
+                                            Bundle extras = new Bundle();
+                                            extras.putString("npa", "1");
+
+                                            AdRequest request = new AdRequest.Builder()
+                                                    .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                                                    .build();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onConsentFormError(String errorDescription) {
+                                        // Consent form error.
+                                    }
+                                })
+                                .withPersonalizedAdsOption()
+                                .withNonPersonalizedAdsOption()
+                                .build();
+                        form.load();
+                    } //end code form
+                }
+            }
+
+            @Override
+            public void onFailedToUpdateConsentInfo(String errorDescription) {
+                // User's consent status failed to update.
+            }
+        });
     }
 
     private void createSoundPool() {
@@ -81,7 +168,12 @@ public class MainActivity extends AppCompatActivity {
 
         changePlayerText();
 
-        //add all music
+        addAllMusic();
+
+        mediaPlayer = MediaPlayer.create(this, listOfMusic.get(musicIndex));
+    }
+
+    private void addAllMusic() {
         for (Field field : R.raw.class.getFields()) {
             try {
                 listOfMusic.add(field.getInt(field));
@@ -89,8 +181,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-        mediaPlayer = MediaPlayer.create(this, listOfMusic.get(musicIndex));
     }
 
     private void initAndSetTouchForButtonsInstrument() {
@@ -101,6 +191,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[0], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton.setImageResource(R.drawable.ic_square_pink_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton.setImageResource(R.drawable.ic_square_pink);
                         break;
                 }
                 return true;
@@ -113,6 +207,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[1], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton2.setImageResource(R.drawable.ic_square_green_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton2.setImageResource(R.drawable.ic_square_green);
                         break;
                 }
                 return true;
@@ -125,6 +223,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[2], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton3.setImageResource(R.drawable.ic_square_blue_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton3.setImageResource(R.drawable.ic_square_blue);
                         break;
                 }
                 return true;
@@ -137,6 +239,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[3], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton4.setImageResource(R.drawable.ic_square_blue_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton4.setImageResource(R.drawable.ic_square_blue);
                         break;
                 }
                 return true;
@@ -149,6 +255,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[4], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton5.setImageResource(R.drawable.ic_square_pink_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton5.setImageResource(R.drawable.ic_square_pink);
                         break;
                 }
                 return true;
@@ -161,6 +271,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[5], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton6.setImageResource(R.drawable.ic_square_purpure_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton6.setImageResource(R.drawable.ic_square_purpure);
                         break;
                 }
                 return true;
@@ -173,6 +287,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[6], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton7.setImageResource(R.drawable.ic_square_green_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton7.setImageResource(R.drawable.ic_square_green);
                         break;
                 }
                 return true;
@@ -185,6 +303,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[7], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton8.setImageResource(R.drawable.ic_square_green_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton8.setImageResource(R.drawable.ic_square_green);
                         break;
                 }
                 return true;
@@ -197,6 +319,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[8], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton9.setImageResource(R.drawable.ic_square_blue_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton9.setImageResource(R.drawable.ic_square_blue);
                         break;
                 }
                 return true;
@@ -209,6 +335,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[9], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton10.setImageResource(R.drawable.ic_square_blue_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton10.setImageResource(R.drawable.ic_square_blue);
                         break;
                 }
                 return true;
@@ -221,6 +351,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[10], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton11.setImageResource(R.drawable.ic_square_blue_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton11.setImageResource(R.drawable.ic_square_blue);
                         break;
                 }
                 return true;
@@ -233,6 +367,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         soundPool.play(instrumentalSounds[11], volumeInstruments, volumeInstruments, 0, 0, 1);
+                        imageButton12.setImageResource(R.drawable.ic_square_pink_pressed);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageButton12.setImageResource(R.drawable.ic_square_pink);
                         break;
                 }
                 return true;
@@ -282,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
             isPlaying = true;
             mediaPlayer = MediaPlayer.create(this, listOfMusic.get(musicIndex));
             mediaPlayer.setLooping(true);
-            mediaPlayer.setVolume(0.9f, 0.9f);
+            mediaPlayer.setVolume(0.8f, 0.8f);
             mediaPlayer.start();
             playButton.setImageResource(R.drawable.ic_stop_black_24dp);
             changePlayerText();
